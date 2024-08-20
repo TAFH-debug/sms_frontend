@@ -6,8 +6,8 @@
     <div class="drawer-side">
       <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
       <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-        <li><a>Sidebar Item 1</a></li>
-        <li><a>Sidebar Item 2</a></li>
+        <li><a href="/announcements">Announcements</a></li>
+        <li><a href="/clubs">Clubs</a></li>
       </ul>
     </div>
 </div>
