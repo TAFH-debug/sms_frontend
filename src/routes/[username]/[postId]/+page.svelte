@@ -10,16 +10,24 @@
         title: string;
         content: string;
     }
-    let title = '';
-    let content = '';
+    let user: { 
+        username: string, 
+        email: string, 
+        password: string,
+        isVerified: boolean,
+        name: string,
+        surname: string, 
+        about: string,
+        roles: { name: string, color: string }[]
+    } = data.data;
 
 </script>
 
 <main>
     <div>
         <div class= "post">
-            <h2>{}</h2>
-            <p>{}</p>
+            <h2>{Post.author}</h2>
+            <p>{Post.content}</p>
         </div>
     </div>
 </main>

@@ -21,11 +21,11 @@ type Announcement = {
     createdAt: string;
 }
 type Post {
-    id: string;
+    id: string = ;
     author: User;
     content: string;
     images: string[];
-    timestamp: string;
+    createdAt: string;
     comments: PostComment[];
 }
 type PostComment {
@@ -33,6 +33,6 @@ type PostComment {
     author: User;
     content: string;
     images: string[];
-    timestamp: string;
+    createdAt: string;
     post: Post;
 }
