@@ -1,7 +1,7 @@
 <script>
   import "../app.css";
-  import Header from "../components/header.svelte";
-  import Navbar from "../components/navbar.svelte";
+  import Header from "$lib/components/header.svelte";
+  import Navbar from "$lib/components/navbar.svelte";
   /** @type {{children?: import('svelte').Snippet}} */
   let { children } = $props();
 </script>

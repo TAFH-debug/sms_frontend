@@ -14,3 +14,25 @@ type User = {
     roleIDs: string[];
     roles: Role[];
 }
+type Announcement = {
+    id: string;
+    content: string;
+    author: User;
+    createdAt: string;
+}
+type Post {
+    id: string;
+    author: User;
+    content: string;
+    images: string[];
+    timestamp: string;
+    comments: PostComment[];
+}
+type PostComment {
+    id: string;
+    author: User;
+    content: string;
+    images: string[];
+    timestamp: string;
+    post: Post;
+}
