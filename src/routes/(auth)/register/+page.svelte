@@ -7,12 +7,7 @@
 
   async function login() {
     const res = await axiosInstance.post('http://localhost:3000/auth/register', { username, password, email });
-
-    if (res.status === 200) {
-      console.log(res.data);
-    } else {
-      console.error('Failed to login');
-    }
+    window.location.href = "/login";
   }
 </script>
 

@@ -10,6 +10,7 @@
     const token = res.data.access_token;
     
     localStorage.setItem("token", token);
+    window.location.href = "/";
   }
 </script>
 

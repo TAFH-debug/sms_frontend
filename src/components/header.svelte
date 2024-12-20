@@ -1,11 +1,20 @@
 <script lang="ts">
+  import axiosInstance from "$lib/axios";
   import { onMount } from "svelte";
 
   let token = "";
+  let user: User;
 
   onMount(() => {
     token = localStorage.getItem("token") || "";
+    if (token === "") return;
+    axiosInstance.get('/users/me').then((res) => user = res.data);
   })
+
+  function logout() {
+    localStorage.removeItem("token");
+    window.location.href = "/";
+  }
 </script>
 
 <div class="navbar">
@@ -41,7 +50,7 @@
     <a class="btn btn-ghost text-2xl" href="/"> Something AI </a>
   </div>
   <div class="navbar-end">
-    {#if token !== ""}
+    {#if user}
     <button class="btn btn-ghost btn-circle">
       <div class="indicator">
         <svg
@@ -76,13 +85,13 @@
         class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
       >
         <li>
-          <a class="justify-between" href="/profile">
+          <a class="justify-between" href={`/${user.username}`}>
             Profile
             <span class="badge">New</span>
           </a>
         </li>
         <li><a href="/setting">Settings</a></li>
-        <li><button>Logout</button></li>
+        <li><button on:click={logout}>Logout</button></li>
       </ul>
     </div>
 
