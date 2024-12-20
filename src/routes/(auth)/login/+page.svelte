@@ -1,8 +1,8 @@
 <script lang="ts">
   import axiosInstance from "$lib/axios";
 
-  let password: string;
-  let username: string;
+  let password: string = $state();
+  let username: string = $state();
 
   async function login() {
     const res = await axiosInstance.post('http://localhost:3000/auth/login', { username, password });
@@ -44,7 +44,7 @@
 
                 <input type="password" class="grow" placeholder="Password" bind:value={password}/>
             </label>
-            <button type="submit" on:click={login} class="btn btn-primary">Login</button>
+            <button type="submit" onclick={login} class="btn btn-primary">Login</button>
         </form>
     </div>
 </div>

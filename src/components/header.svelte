@@ -3,7 +3,7 @@
   import { onMount } from "svelte";
 
   let token = "";
-  let user: User;
+  let user: User = $state();
 
   onMount(() => {
     token = localStorage.getItem("token") || "";
@@ -114,7 +114,7 @@
           ></path>
         </svg>
       </div>
-      <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+      <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
       <ul
         tabindex="0"
         class="dropdown-content bg-base-300 rounded-box z-[1] w-52 p-2 shadow-2xl"
