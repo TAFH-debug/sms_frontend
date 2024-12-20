@@ -1,7 +1,11 @@
 <script lang="ts">
     import axiosInstance from "$lib/axios";
 
-    export let data;
+    interface Props {
+        data: any;
+    }
+
+    let { data }: Props = $props();
 
     let user: { 
         username: string, 
@@ -65,7 +69,7 @@
             {/if}
         </div>
         {#if !user.isVerified}
-        <button class="max-w-[40%] btn btn-error text-gray-300" on:click={verify}>
+        <button class="max-w-[40%] btn btn-error text-gray-300" onclick={verify}>
         Verify
         </button>
         {/if}

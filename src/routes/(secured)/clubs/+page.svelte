@@ -1,5 +1,6 @@
 <script>
-    export let data;
+    /** @type {{data: any}} */
+    let { data } = $props();
 </script>
 
 <div class="w-full grid gap-4 grid-cols-3 p-4">
