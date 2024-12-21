@@ -10,6 +10,8 @@ export type User = {
     email: string;
     username: string;
     name: string;
+    about: string;
+    isVerified: boolean;
     surname: string;
     roleIDs: string[];
     roles: Role[];
@@ -20,7 +22,8 @@ export type Announcement = {
     author: User;
     createdAt: string;
 }
-export type Post {
+
+type Post = {
     id: string;
     author: User;
     content: string;
@@ -28,7 +31,8 @@ export type Post {
     createdAt: string;
     comments: PostComment[];
 }
-export type PostComment {
+
+type PostComment = {
     id: string;
     author: User;
     content: string;
@@ -36,3 +40,5 @@ export type PostComment {
     createdAt: string;
     post: Post;
 }
+
+export type { Role, User, Announcement, Post, PostComment };

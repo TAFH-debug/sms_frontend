@@ -1,8 +1,8 @@
 <script lang="ts">
   import axiosInstance from "$lib/axios";
 
-  let password: string = $state();
-  let username: string = $state();
+  let password: string = $state("");
+  let username: string = $state("");
 
   async function login() {
     const res = await axiosInstance.post('http://localhost:3000/auth/login', { username, password });

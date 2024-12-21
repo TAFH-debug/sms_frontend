@@ -1,9 +1,10 @@
 <script lang="ts">
   import axiosInstance from "$lib/axios";
+  import type { User } from "$lib/types";
   import { onMount } from "svelte";
 
   let token = "";
-  let user: User = $state();
+  let user: User | undefined = $state();
 
   onMount(() => {
     token = localStorage.getItem("token") || "";

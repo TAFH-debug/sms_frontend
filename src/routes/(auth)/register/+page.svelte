@@ -3,11 +3,9 @@
   import PasswordIcon from "../../../components/icons/passwordIcon.svelte";
   import UserIcon from "../../../components/icons/userIcon.svelte";
 
-  let password: string;
-  let username: string;
-  let email: string;
-  let surname: string;
-  let name: string;
+  let password: string = $state("");
+  let username: string = $state("");
+  let email: string = $state("");
 
   async function login() {
     const res = await axiosInstance.post(
