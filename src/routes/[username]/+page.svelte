@@ -1,5 +1,6 @@
 <script lang="ts">
     import axiosInstance from "$lib/axios";
+  import type { User } from "$lib/types";
 
     interface Props {
         data: any;
@@ -7,16 +8,7 @@
 
     let { data }: Props = $props();
 
-    let user: { 
-        username: string, 
-        email: string, 
-        password: string,
-        isVerified: boolean,
-        name: string,
-        surname: string, 
-        about: string,
-        roles: { name: string, color: string }[]
-    } = data.data;
+    let user: User = data.data;
 
     const verify = () => {
         axiosInstance.get('/verify');

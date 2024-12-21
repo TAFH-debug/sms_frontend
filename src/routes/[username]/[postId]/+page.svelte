@@ -1,33 +1,18 @@
 <script lang="ts">
-	import Post from '$lib/components/PostCard.svelte';
-    interface Post {
-        id: number;
-        title: string;
-        content: string;
-    }
-    interface Post {
-        id: number;
-        title: string;
-        content: string;
-    }
-    let user: { 
-        username: string, 
-        email: string, 
-        password: string,
-        isVerified: boolean,
-        name: string,
-        surname: string, 
-        about: string,
-        roles: { name: string, color: string }[]
-    } = data.data;
+	import type { Post, User } from '$lib/types';
 
+    interface PageData {
+        data: User;
+    }
+
+    let props: { data: PageData, post: Post } = $props();
 </script>
 
 <main>
     <div>
         <div class= "post">
-            <h2>{Post.author}</h2>
-            <p>{Post.content}</p>
+            <h2>{props.post.author}</h2>
+            <p>{props.post.content}</p>
         </div>
     </div>
 </main>

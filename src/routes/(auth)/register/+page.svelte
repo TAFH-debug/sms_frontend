@@ -1,9 +1,9 @@
 <script lang="ts">
   import axiosInstance from "$lib/axios";
 
-  let password: string = $state();
-  let username: string = $state();
-  let email: string = $state();
+  let password: string = $state("");
+  let username: string = $state("");
+  let email: string = $state("");
 
   async function login() {
     const res = await axiosInstance.post('http://localhost:3000/auth/register', { username, password, email });
