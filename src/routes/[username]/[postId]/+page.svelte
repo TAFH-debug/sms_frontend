@@ -1,49 +1,19 @@
 <script lang="ts">
-	import Post from '$lib/components/PostCard.svelte';
-    interface Post {
-        id: number;
-        title: string;
-        content: string;
-    }
-    interface Post {
-        id: number;
-        title: string;
-        content: string;
-    }
-    let user: { 
-        username: string, 
-        email: string, 
-        password: string,
-        isVerified: boolean,
-        name: string,
-        surname: string, 
-        about: string,
-        roles: { name: string, color: string }[]
-    } = data.data;
-
+  import PostCard from "$lib/components/PostCard.svelte";
 </script>
 
-<main>
-    <div>
-        <div class= "post">
-            <h2>{Post.author}</h2>
-            <p>{Post.content}</p>
-        </div>
-    </div>
-</main>
+<div class="flex flex-col items-center">
+  {#await data.post}
+    <div>Loading...</div>
+  {:then post}
+    <PostCard {post} />
+  {/await}
 
-<style>
-    main {
-        max-width: 600px;
-        margin: 0 auto;
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-    }
-    .post {
-        border: 1px solid #ccc;
-        padding: 1rem;
-        margin: 1rem 0;
-        border-radius: 5px;
-        background: #fff;
-    }
-</style>
+  <!-- </ {#await data.comments}
+    <div>Loading Comments...</div>
+  {:then comments}
+    {#each comments.data as item}
+      <PostCard post={item} />
+    {/each}
+  {/await} > -->
+</div>
