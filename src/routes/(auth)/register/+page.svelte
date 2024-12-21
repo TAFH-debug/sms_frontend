@@ -6,6 +6,8 @@
   let password: string = $state("");
   let username: string = $state("");
   let email: string = $state("");
+  let name: string = $state("");
+  let surname: string = $state("");
 
   async function login() {
     const res = await axiosInstance.post(
