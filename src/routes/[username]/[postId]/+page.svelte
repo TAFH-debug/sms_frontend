@@ -1,34 +1,21 @@
 <script lang="ts">
 	import type { Post, User } from '$lib/types';
-
+    import PostCard from '$lib/components/PostCard.svelte';
+    import toast, { Toaster } from 'svelte-5-french-toast';
     interface PageData {
         data: User;
     }
-
+    toast.error("Error...")l;
     let props: { data: PageData, post: Post } = $props();
 </script>
 
-<main>
-    <div>
-        <div class= "post">
-            <h2>{props.post.author}</h2>
-            <p>{props.post.content}</p>
-        </div>
-    </div>
-</main>
-
-<style>
-    main {
-        max-width: 600px;
-        margin: 0 auto;
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-    }
-    .post {
-        border: 1px solid #ccc;
-        padding: 1rem;
-        margin: 1rem 0;
-        border-radius: 5px;
-        background: #fff;
-    }
-</style>
+<div class="flex flex-col items-center">
+  {#await data.post}
+    <div>Loading...</div>
+  {:then ann}
+    <PostCard post={ann.data} />
+  {:catch error}
+    {console.log(error)}
+    <Toaster />
+  {/await}
+</div>

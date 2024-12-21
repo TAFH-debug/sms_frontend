@@ -4,8 +4,13 @@
     interface PageData {
         data: User;
     }
-
-    let props: { data: PageData, post: Post } = $props();
+    let images: File[] = [];
+    function handleFileChange(event: Event) {
+      const target = event.target as HTMLInputElement;
+      if (target.files) {
+        images = Array.from(target.files);
+      }
+    }
 
 
 </script>
