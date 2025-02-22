@@ -6,8 +6,6 @@
     }
 
     let props: { data: PageData, post: Post } = $props();
-
-
 </script>
 
 <div>

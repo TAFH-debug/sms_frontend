@@ -5,7 +5,7 @@ export const ssr = false;
 
 export async function load({ params }: { params: any }) {
     try {
-        const user = await axiosInstance.get('http://localhost:3000/users/username/' + params.username);
+        const user = await axiosInstance.get('/users/' + params.username);
         return user;
     }
     catch (e: any) {

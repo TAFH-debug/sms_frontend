@@ -24,6 +24,7 @@
         font-family: Arial, sans-serif;
         line-height: 1.6;
     }
+    
     .post {
         border: 1px solid #ccc;
         padding: 1rem;

@@ -1,6 +1,6 @@
 <script lang="ts">
     import axiosInstance from "$lib/axios";
-  import type { User } from "$lib/types";
+    import type { User } from "$lib/types";
 
     interface Props {
         data: any;
@@ -23,7 +23,7 @@
                 <div class="rounded-full h-32">
                     <img
                         alt="Tailwind CSS Navbar component"
-                        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                        src={user.avatar_url}
                     />
                 </div>
             </div>

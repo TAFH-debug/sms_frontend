@@ -1,7 +1,7 @@
 <script lang="ts">
   import axiosInstance from "$lib/axios";
-  import PasswordIcon from "../../../components/icons/passwordIcon.svelte";
-  import UserIcon from "../../../components/icons/userIcon.svelte";
+  import PasswordIcon from "../../../lib/components/icons/passwordIcon.svelte";
+  import UserIcon from "../../../lib/components/icons/userIcon.svelte";
 
   let password: string = $state("");
   let username: string = $state("");

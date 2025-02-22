@@ -1,22 +1,24 @@
-export type Role = {
+type Role = {
     id: string;
     name: string;
     color: string;
     userIDs: string[];
 }
 
-export type User = {
+type User = {
     id: string;
     email: string;
     username: string;
     name: string;
     about: string;
     isVerified: boolean;
+    avatar_url: string;
     surname: string;
     roleIDs: string[];
     roles: Role[];
 }
-export type Announcement = {
+
+type Announcement = {
     id: string;
     content: string;
     author: User;
