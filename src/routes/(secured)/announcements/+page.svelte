@@ -2,6 +2,8 @@
   import AnnouncementCard from "$lib/components/AnnouncementCard.svelte";
   import type { Announcement } from "$lib/types";
   import type { AxiosResponse } from "axios";
+  import toast, { Toaster } from 'svelte-5-french-toast';
+  toast.error("Error...");
 
   interface PageData {
     announcements: AxiosResponse<Announcement[]>;
@@ -17,5 +19,8 @@
     {#each ann.data as item}
       <AnnouncementCard announcement={item} />
     {/each}
+  {:catch error}
+    {console.log(error)}
+    <Toaster />
   {/await}
 </div>
