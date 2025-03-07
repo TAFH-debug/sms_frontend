@@ -14,6 +14,7 @@ export async function register(username: string, name: string, surname: string, 
           email,
           surname,
           name,
+          firebaseId: "popa"
         }
     );
 }
