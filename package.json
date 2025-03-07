@@ -13,9 +13,12 @@
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.5.27",
 		"autoprefixer": "^10.4.20",
-		"daisyui": "^4.12.10",
+		"bits-ui": "^0.22.0",
+		"clsx": "^2.1.1",
 		"postcss": "^8.4.41",
 		"svelte-check": "^4.0.0",
+		"tailwind-merge": "^3.0.2",
+		"tailwind-variants": "^0.3.1",
 		"tailwindcss": "^3.4.9",
 		"typescript": "^5.5.0"
 	},
@@ -23,8 +26,11 @@
 	"dependencies": {
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
 		"axios": "^1.7.4",
+		"firebase": "^11.4.0",
+		"lucide-svelte": "^0.477.0",
 		"svelte": "^5.15.0",
 		"svelte-5-french-toast": "^2.0.1",
+		"svelte-radix": "^2.0.1",
 		"vite": "^6.0.5"
 	}
 }

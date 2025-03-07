@@ -1,171 +1,64 @@
 <script lang="ts">
-  import axiosInstance from "$lib/axios";
-  import type { User } from "$lib/types";
-  import { onMount } from "svelte";
-
-  let token = "";
-  let user: User | undefined = $state();
-
-  onMount(() => {
-    token = localStorage.getItem("token") || "";
-    if (token === "") return;
-    axiosInstance.get('/users/me').then((res) => user = res.data);
-  })
-
-  function logout() {
-    localStorage.removeItem("token");
-    window.location.href = "/";
-  }
+	import { BellIcon, LogOutIcon, SettingsIcon, UserIcon } from "lucide-svelte";
+	import { Button } from "$lib/components/ui/button";
+	import { Avatar, AvatarFallback, AvatarImage } from "$lib/components/ui/avatar";
+	import { logout, sessionUser } from "$lib/token";
+	import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 </script>
 
-<div class="navbar">
-  <div class="navbar-start">
-    <div class="dropdown">
-      <label for="my-drawer" class="btn btn-ghost btn-circle">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h7"
-          />
-        </svg>
-      </label>
-      <ul
-        tabindex="-1"
-        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-      >
-        <li><a href="/login">Login</a></li>
-        <li><a href="/register">Register</a></li>
-        <li><a href="/about">About Us</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="navbar-center">
-    <a class="btn btn-ghost text-2xl" href="/"> Something AI </a>
-  </div>
-  <div class="navbar-end">
-    {#if user}
-    <button class="btn btn-ghost btn-circle">
-      <div class="indicator">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-          />
-        </svg>
-        <span class="badge badge-xs badge-primary indicator-item"></span>
-      </div>
-    </button>
+<header class="sticky left-0 right-0 top-0 z-50 border-b bg-background/80 backdrop-blur-sm h-[10vh] text-foreground">
+	<div class="container mx-auto flex items-center justify-between gap-4 h-full">
+		
+		<Button variant="link" href="/" class="flex items-center gap-2 m-auto justify-center">
+			<span class="text-2xl font-bold">Acme inc</span>
+		</Button>
 
-    <div class="dropdown dropdown-end">
-      <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-        <div class="w-10 rounded-full">
-          <img
-            alt="Tailwind CSS Navbar component"
-            src={user.avatar_url}
-          />
-        </div>
-      </div>
-      <ul
-        tabindex="-1"
-        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-      >
-        <li>
-          <a class="justify-between" href={`/${user.username}`}>
-            Profile
-            <span class="badge">New</span>
-          </a>
-        </li>
-        <li><a href="/setting">Settings</a></li>
-        <li><button on:click={logout}>Logout</button></li>
-      </ul>
-    </div>
+		<!-- actions -->
+		<div class="flex items-center gap-2">
+			<!-- mobile search and menu
+			<div class="flex lg:hidden">
+				<Button variant="ghost" size="icon" class="rounded-full">
+					<SearchIcon class="h-5 w-5" />
+				</Button>
+				<Button variant="ghost" size="icon" class="rounded-full" onclick={handleMenuClick}>
+					<MenuIcon class="h-5 w-5" />
+				</Button>
+			</div> -->
 
-    {:else}
-    <a class="btn btn-primary btn-ghost mx-2" href="/login">Sign in</a>
-    <a class="btn btn-primary btn-outline" href="/register">Sign up</a>
-    {/if}
+			<!-- desktop actions -->
+			<div class="hidden lg:flex lg:items-center lg:gap-2">
 
-    <div class="dropdown dropdown-end">
-      <div tabindex="0" role="button" class="btn m-1">
-        Theme
-        <svg
-          width="12px"
-          height="12px"
-          class="inline-block h-2 w-2 fill-current opacity-60"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 2048 2048"
-        >
-          <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"
-          ></path>
-        </svg>
-      </div>
-      <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-      <ul
-        tabindex="0"
-        class="dropdown-content bg-base-300 rounded-box z-[1] w-52 p-2 shadow-2xl"
-      >
-        <li>
-          <input
-            type="radio"
-            name="theme-dropdown"
-            class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-            aria-label="Default"
-            value="default"
-          />
-        </li>
-        <li>
-          <input
-            type="radio"
-            name="theme-dropdown"
-            class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-            aria-label="Retro"
-            value="retro"
-          />
-        </li>
-        <li>
-          <input
-            type="radio"
-            name="theme-dropdown"
-            class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-            aria-label="Cyberpunk"
-            value="cyberpunk"
-          />
-        </li>
-        <li>
-          <input
-            type="radio"
-            name="theme-dropdown"
-            class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-            aria-label="Valentine"
-            value="valentine"
-          />
-        </li>
-        <li>
-          <input
-            type="radio"
-            name="theme-dropdown"
-            class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-            aria-label="Aqua"
-            value="aqua"
-          />
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
+				{#if $sessionUser}
+				<Button variant="ghost" size="icon" class="rounded-full">
+					<BellIcon class="h-5 w-5" />
+				</Button>
+				<DropdownMenu>
+					<DropdownMenuTrigger>
+						<Avatar>
+							<AvatarImage src={$sessionUser.avatar_url} alt="User" />
+							<AvatarFallback>CN</AvatarFallback>
+						</Avatar>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent align="end">
+						<DropdownMenuLabel>My Account</DropdownMenuLabel>
+						<DropdownMenuSeparator />
+						<DropdownMenuItem href={`/${$sessionUser.username}`}>
+							<UserIcon class="mr-2 h-4 w-4" />
+							Profile
+						</DropdownMenuItem>
+						<DropdownMenuSeparator />
+						<DropdownMenuItem class="text-destructive" onclick={logout}>
+							<LogOutIcon class="mr-2 h-4 w-4" />
+							Log out
+						</DropdownMenuItem>
+					</DropdownMenuContent>
+				</DropdownMenu>
+				{:else}
+				<Button class="rounded-full" href="/signin">
+					Sign In
+				</Button>
+				{/if}
+			</div>
+		</div>
+	</div>
+</header>

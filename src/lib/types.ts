@@ -1,8 +1,11 @@
+import type { Timestamp } from "firebase/firestore";
+
 type Role = {
     id: string;
     name: string;
     color: string;
     userIDs: string[];
+    permissions: string[];
 }
 
 type User = {
@@ -15,7 +18,7 @@ type User = {
     avatar_url: string;
     surname: string;
     roleIDs: string[];
-    roles: Role[];
+    roles: Role[] | undefined;
 }
 
 type Announcement = {
@@ -31,8 +34,14 @@ type Post = {
     content: string;
     images: string[];
     createdAt: string;
-    comments: PostComment[];
+    comments: PostComment[] | undefined;
 }
+
+type Message = {
+    content: string;
+    username: string;
+    date: Timestamp;
+};
 
 type PostComment = {
     id: string;
@@ -43,4 +52,10 @@ type PostComment = {
     post: Post;
 }
 
-export type { Role, User, Announcement, Post, PostComment };
+type Channel = {
+    path: string;
+    name: string;
+    users: User[] | undefined;
+}
+
+export type { Channel, Message, Role, User, Announcement, Post, PostComment };
